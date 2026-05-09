@@ -1,331 +1,498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía Django — Evidencia 3</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía Django — Evidencia 3</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
 
-  <div class="bg-grid"></div>
-
-  <header>
-    <div class="header-inner">
-      <div class="header-badge">Evidencia 3</div>
-      <h1>Guía de Configuración<br><span class="accent">Django</span></h1>
-      <p class="subtitle">Pasos para levantar tu primera página web con Django desde cero</p>
-      <div class="note info" style="margin-bottom:1.5rem; max-width:600px;">
-        📝 Los nombres como <code>nombre_entorno</code>, <code>nombre_proyecto</code> y <code>nombre_app</code> son ejemplos genéricos — tú los eliges al crear tu proyecto. Solo úsalos de forma consistente en todos los pasos.
-      </div>
-      <div class="legend">
-        <div class="leg"><span class="dot dot-term"></span>Terminal</div>
-        <div class="leg"><span class="dot dot-proj"></span>Proyecto</div>
-        <div class="leg"><span class="dot dot-app"></span>App</div>
-        <div class="leg"><span class="dot dot-file"></span>Archivo</div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- SECCIÓN 1 -->
-    <section>
-      <div class="section-label">01 — Preparación del entorno</div>
-
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">1</div>
-          <div class="connector"></div>
+    <header>
+      <div class="header-inner">
+        <div class="header-badge">Evidencia 3</div>
+        <h1>Guía de Configuración<br /><span class="accent">Django</span></h1>
+        <p class="subtitle">
+          Pasos para levantar tu primera página web con Django desde cero
+        </p>
+        <div class="note info" style="margin-bottom: 1.5rem; max-width: 620px">
+          📝 Los nombres en <em class="ph">naranja</em> como
+          <em class="ph">nombre_entorno</em>,
+          <em class="ph">nombre_proyecto</em> o
+          <em class="ph">nombre_app</em> son los que
+          <strong>tú decides</strong> al crear tu proyecto. Lo importante es
+          usar siempre el mismo nombre en todos los pasos.
         </div>
-        <div class="step-body">
-          <h3>Crear el entorno virtual</h3>
-          <code class="cmd">python -m venv <em class="ph">nombre_entorno</em></code>
-          <div class="note info">
-            Crea una carpeta con el nombre que elijas — en el ejemplo del profesor fue <code>ambiente_tres</code>, pero puede ser cualquier nombre como <code>env</code> o <code>venv</code>. Esta carpeta aísla las librerías de tu proyecto del resto de la computadora. Hazlo <strong>una sola vez</strong> por proyecto.
+        <div class="legend">
+          <div class="leg">
+            <span class="dot dot-term"></span>Terminal / consola
+          </div>
+          <div class="leg">
+            <span class="dot dot-proj"></span>Carpeta del proyecto
+          </div>
+          <div class="leg">
+            <span class="dot dot-app"></span>Carpeta de la app
+          </div>
+          <div class="leg">
+            <span class="dot dot-file"></span>Editar un archivo
           </div>
         </div>
       </div>
+    </header>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">2</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Activar el entorno virtual</h3>
-          <code class="cmd">source <em class="ph">nombre_entorno</em>/Scripts/activate</code>
-          <div class="note info">
-            Reemplaza <code>nombre_entorno</code> con el nombre que usaste en el paso 1. Debes activarlo <strong>cada vez que abras una terminal nueva</strong>. Sabrás que está activo porque verás el nombre entre paréntesis al inicio: <code>(nombre_entorno)</code>.
-          </div>
-          <div class="note warn">
-            ⚠️ En Windows usa <code>Scripts\activate</code> (con backslash). En Mac/Linux usa <code>bin/activate</code>.
-          </div>
-        </div>
-      </div>
+    <main>
+      <!-- ==============================
+         SECCIÓN 1 — ENTORNO
+    =============================== -->
+      <section>
+        <div class="section-label">01 — Preparación del entorno</div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">3</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Instalar Django</h3>
-          <code class="cmd">pip install django</code>
-          <div class="note info">
-            Este comando es siempre igual. Solo se instala dentro del entorno virtual activo — si no lo activaste primero, Django se instala globalmente y puede causar conflictos.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">1</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">📍 Terminal — desde cualquier ubicación</div>
+            <h3>Crear el entorno virtual</h3>
+            <code class="cmd"
+              >python -m venv <em class="ph">nombre_entorno</em></code
+            >
+            <div class="what">
+              Esto crea una carpeta con el nombre que elijas, donde se van a
+              instalar las librerías de este proyecto. Se hace
+              <strong>una sola vez</strong> por proyecto.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- SECCIÓN 2 -->
-    <section>
-      <div class="section-label">02 — Crear el proyecto y la app</div>
-
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">4</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Crear el proyecto Django</h3>
-          <code class="cmd">django-admin startproject <em class="ph">nombre_proyecto</em></code>
-          <div class="note info">
-            Elige el nombre de tu proyecto — en el ejemplo del profesor fue <code>demo3</code>. Genera una carpeta con ese nombre que contiene los archivos de configuración: <code>settings.py</code>, <code>urls.py</code>, <code>wsgi.py</code>, etc.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">2</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — misma ubicación del paso anterior
+            </div>
+            <h3>Activar el entorno virtual</h3>
+            <code class="cmd"
+              >source <em class="ph">nombre_entorno</em>/Scripts/activate</code
+            >
+            <div class="what">
+              Le indicamos a Python que use el entorno que acabamos de crear.
+              Cuando está activo, verás el nombre entre paréntesis al inicio de
+              la terminal: <code>(<em>nombre_entorno</em>)</code>.
+            </div>
+            <div class="note warn">
+              ⚠️ Hay que activarlo
+              <strong>cada vez que abras una terminal nueva</strong>.<br />
+              Windows: <code>Scripts\activate</code> &nbsp;|&nbsp; Mac/Linux:
+              <code>bin/activate</code>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">5</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Entrar a la carpeta del proyecto</h3>
-          <code class="cmd">cd <em class="ph">nombre_proyecto</em></code>
-          <div class="note warn">
-            ⚠️ Este paso es obligatorio. Usa el mismo nombre que pusiste en el paso 4. Si no entras a la carpeta, los comandos de Django no funcionarán correctamente.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">3</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">📍 Terminal — con el entorno virtual activo</div>
+            <h3>Instalar Django</h3>
+            <code class="cmd">pip install django</code>
+            <div class="what">
+              Descargamos e instalamos Django dentro del entorno que activamos.
+              Este comando siempre es igual.
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">6</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Crear la app dentro del proyecto</h3>
-          <code class="cmd">python manage.py startapp <em class="ph">nombre_app</em></code>
-          <div class="note info">
-            Elige el nombre de tu app — en el ejemplo fue <code>miapp</code>. Una "app" es un módulo dentro del proyecto; el proyecto puede tener varias. Crea una carpeta con ese nombre que contiene <code>views.py</code>, <code>models.py</code>, etc.
+      <!-- ==============================
+         SECCIÓN 2 — PROYECTO Y APP
+    =============================== -->
+      <section>
+        <div class="section-label">02 — Crear el proyecto y la app</div>
+
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">4</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">📍 Terminal — con el entorno virtual activo</div>
+            <h3>Crear el proyecto Django</h3>
+            <code class="cmd"
+              >django-admin startproject
+              <em class="ph">nombre_proyecto</em></code
+            >
+            <div class="what">
+              Django genera automáticamente la estructura base del proyecto: una
+              carpeta con el nombre que le demos, con los archivos de
+              configuración general adentro — <code>settings.py</code>,
+              <code>urls.py</code>, <code>wsgi.py</code>, entre otros.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">7</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Aplicar migraciones de la base de datos</h3>
-          <code class="cmd">python manage.py migrate</code>
-          <div class="note info">
-            Este comando es siempre igual. Django crea las tablas necesarias en <code>db.sqlite3</code>. Corre esto antes de levantar el servidor por primera vez.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">5</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — justo después de crear el proyecto
+            </div>
+            <h3>Entrar a la carpeta del proyecto</h3>
+            <code class="cmd">cd <em class="ph">nombre_proyecto</em></code>
+            <div class="what">
+              Nos movemos dentro de la carpeta del proyecto. Todos los comandos
+              que siguen deben ejecutarse desde aquí adentro, donde está el
+              archivo <code>manage.py</code>.
+            </div>
+            <div class="note warn">
+              ⚠️ Si no entras a esta carpeta antes de continuar, los siguientes
+              comandos van a fallar.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">8</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Crear el superusuario (admin)</h3>
-          <code class="cmd">python manage.py createsuperuser</code>
-          <div class="note info">
-            Este comando es siempre igual. Te pedirá nombre de usuario, correo y contraseña. Con este usuario puedes entrar al panel de administración en <code>/admin/</code>.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">6</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — dentro de la carpeta del proyecto
+            </div>
+            <h3>Crear la app</h3>
+            <code class="cmd"
+              >python manage.py startapp <em class="ph">nombre_app</em></code
+            >
+            <div class="what">
+              Creamos la app, que es una subcarpeta dentro del proyecto donde
+              vamos a escribir el código de nuestra página — las vistas, los
+              modelos, las rutas propias. Django genera los archivos base por
+              nosotros.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">9</div>
-        </div>
-        <div class="step-body">
-          <h3>Abrir el proyecto en VS Code</h3>
-          <code class="cmd">code .</code>
-          <div class="note info">
-            El punto <code>.</code> significa "la carpeta actual". Abre todo el proyecto en VS Code para que puedas editar los archivos.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">7</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — dentro de la carpeta del proyecto
+            </div>
+            <h3>Crear las tablas base de la base de datos</h3>
+            <code class="cmd">python manage.py migrate</code>
+            <div class="what">
+              Django necesita ciertas tablas en la base de datos para funcionar
+              — para usuarios, sesiones y otras cosas internas. Este comando las
+              crea en un archivo llamado <code>db.sqlite3</code>. Siempre se
+              corre antes de levantar el servidor por primera vez.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- SECCIÓN 3 -->
-    <section>
-      <div class="section-label">03 — Configurar el proyecto <span class="label-path">📁 nombre_proyecto/</span></div>
-
-      <div class="step" data-type="proj">
-        <div class="step-left">
-          <div class="num proj">10</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Registrar la app en <code>nombre_proyecto/settings.py</code></h3>
-          <div class="note info">
-            Abre <code>settings.py</code> dentro de la carpeta del proyecto (no de la app). Busca <code>INSTALLED_APPS</code> y agrega tu app al final. El formato es <code>nombre_app.apps.NombreAppConfig</code> — la primera parte en minúsculas, la segunda con inicial mayúscula:
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">8</div>
+            <div class="connector"></div>
           </div>
-          <pre class="code-block"><span class="c-key">INSTALLED_APPS</span> = [
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — dentro de la carpeta del proyecto
+            </div>
+            <h3>Crear el usuario administrador</h3>
+            <code class="cmd">python manage.py createsuperuser</code>
+            <div class="what">
+              La terminal nos va a pedir un nombre de usuario, correo y
+              contraseña. Con esos datos se crea el usuario con el que podemos
+              entrar al panel de administración de Django en
+              <code>/admin/</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">9</div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — dentro de la carpeta del proyecto
+            </div>
+            <h3>Abrir el proyecto en VS Code</h3>
+            <code class="cmd">code .</code>
+            <div class="what">
+              Abrimos VS Code apuntando a la carpeta actual. El punto significa
+              "aquí mismo". A partir de este paso vamos a editar archivos, así
+              que abrimos el editor.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================
+         SECCIÓN 3 — CONFIG PROYECTO
+    =============================== -->
+      <section>
+        <div class="section-label">
+          03 — Configurar el proyecto
+          <span class="label-path">📁 carpeta del proyecto</span>
+        </div>
+
+        <div class="step" data-type="proj">
+          <div class="step-left">
+            <div class="num proj">10</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📂 <strong>nombre_proyecto / settings.py</strong>
+            </div>
+            <h3>Registrar la app en la configuración del proyecto</h3>
+            <div class="what">
+              Le indicamos al proyecto que existe nuestra app y que la incluya.
+              Si no la registramos aquí, Django la ignora. Buscamos la lista
+              <code>INSTALLED_APPS</code> y agregamos una línea al final:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-key">INSTALLED_APPS</span> = [
     <span class="c-str">'django.contrib.admin'</span>,
     <span class="c-str">'django.contrib.auth'</span>,
-    <span class="c-dim">...</span>
-    <span class="c-hl">'<em class="ph2">nombre_app</em>.apps.<em class="ph2">NombreApp</em>Config',</span>  <span class="c-dim"># ← agrega esto</span>
+    <span class="c-dim">...  # las líneas que ya están</span>
+    <span class="c-hl">'<em class="ph2">nombre_app</em>.apps.<em class="ph2">NombreApp</em>Config',</span>  <span class="c-dim"># ← agregamos esto</span>
 ]</pre>
-          <div class="note warn">
-            ⚠️ Ejemplo: si tu app se llama <code>miapp</code>, escribes <code>'miapp.apps.MiappConfig'</code>. Puedes verificar el nombre exacto de la clase abriendo el archivo <code>nombre_app/apps.py</code>.
+            <div class="note warn">
+              ⚠️ El formato es: el nombre de la app en minúsculas, luego
+              <code>.apps.</code>, luego el mismo nombre con inicial mayúscula y
+              al final <code>Config</code>. Puedes ver el nombre exacto abriendo
+              <code>nombre_app/apps.py</code>.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="proj">
-        <div class="step-left">
-          <div class="num proj">13</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Conectar las URLs de la app en <code>nombre_proyecto/urls.py</code></h3>
-          <div class="note info">
-            Abre el <code>urls.py</code> de la carpeta del proyecto. Agrega <code>include</code> a la importación y una entrada en <code>urlpatterns</code> que apunte a las URLs de tu app:
+        <div class="step" data-type="proj">
+          <div class="step-left">
+            <div class="num proj">13</div>
+            <div class="connector"></div>
           </div>
-          <pre class="code-block"><span class="c-key">from</span> django.urls <span class="c-key">import</span> path, include
+          <div class="step-body">
+            <div class="where">
+              📂 <strong>nombre_proyecto / urls.py</strong>
+            </div>
+            <h3>Conectar las rutas de la app al proyecto</h3>
+            <div class="what">
+              Le decimos al proyecto que las rutas de nuestra app están en el
+              archivo <code>urls.py</code> de la app. Agregamos
+              <code>include</code> en la importación y una línea en
+              <code>urlpatterns</code>:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-key">from</span> django.urls <span class="c-key">import</span> path, include  <span class="c-dim"># agregar "include"</span>
 
 urlpatterns = [
     path(<span class="c-str">'admin/'</span>, admin.site.urls),
-    <span class="c-hl">path('', include('<em class="ph2">nombre_app</em>.urls')),</span>  <span class="c-dim"># ← agrega esto</span>
+    <span class="c-hl">path(<span class="c-str">''</span>, include(<span class="c-str">'<em class="ph2">nombre_app</em>.urls'</span>)),</span>  <span class="c-dim"># ← agregamos esto</span>
 ]</pre>
-        </div>
-      </div>
-
-      <div class="step" data-type="proj">
-        <div class="step-left">
-          <div class="num proj">14</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Crear carpetas <code>static/</code> y <code>templates/</code></h3>
-          <div class="note info">
-            Estas carpetas van en la raíz del proyecto, al mismo nivel que <code>manage.py</code>, no dentro de la app. Créalas manualmente desde VS Code.
           </div>
-          <pre class="code-block"><em class="ph2">nombre_proyecto</em>/      <span class="c-dim"># raíz — donde está manage.py</span>
-├── <span class="c-hl">templates/</span>           <span class="c-dim"># aquí van los archivos HTML</span>
+        </div>
+
+        <div class="step" data-type="proj">
+          <div class="step-left">
+            <div class="num proj">14</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📂 Raíz del proyecto — al mismo nivel que <code>manage.py</code>
+            </div>
+            <h3>
+              Crear las carpetas <code>templates/</code> y <code>static/</code>
+            </h3>
+            <div class="what">
+              Creamos dos carpetas manualmente desde VS Code. En
+              <code>templates/</code> van a vivir los archivos HTML, y en
+              <code>static/</code> van el CSS, las imágenes y el JavaScript.
+            </div>
+            <pre
+              class="code-block"
+            ><em class="ph2">nombre_proyecto</em>/         <span class="c-dim">← aquí está manage.py</span>
+├── <span class="c-hl">templates/</span>             <span class="c-dim">← aquí van los HTML</span>
 │   └── index.html
-├── <span class="c-hl">static/</span>              <span class="c-dim"># aquí van CSS, imágenes, JS</span>
+├── <span class="c-hl">static/</span>                <span class="c-dim">← aquí van CSS, imágenes, JS</span>
 │   ├── css/
 │   └── img/
 ├── manage.py
-├── <em class="ph2">nombre_proyecto</em>/    <span class="c-dim"># carpeta de configuración</span>
-└── <em class="ph2">nombre_app</em>/         <span class="c-dim"># carpeta de la app</span></pre>
-        </div>
-      </div>
-
-      <div class="step" data-type="proj">
-        <div class="step-left">
-          <div class="num proj">15</div>
-          <div class="connector"></div>
-        </div>
-        <div class="step-body">
-          <h3>Configurar rutas de templates y static en <code>settings.py</code></h3>
-          <div class="note info">
-            Asegúrate de tener <code>import os</code> al inicio del archivo. Luego edita estas dos secciones — el código es siempre igual, sin importar el nombre de tu proyecto:
+├── <em class="ph2">nombre_proyecto</em>/       <span class="c-dim">← carpeta de configuración</span>
+└── <em class="ph2">nombre_app</em>/            <span class="c-dim">← carpeta de la app</span></pre>
+            <div class="note warn">
+              ⚠️ Estas dos carpetas van en la raíz del proyecto,
+              <strong>no dentro de la carpeta de la app</strong>.
+            </div>
           </div>
-          <pre class="code-block"><span class="c-dim"># Al inicio del archivo</span>
+        </div>
+
+        <div class="step" data-type="proj">
+          <div class="step-left">
+            <div class="num proj">15</div>
+            <div class="connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              📂 <strong>nombre_proyecto / settings.py</strong>
+            </div>
+            <h3>
+              Indicarle a Django dónde están los templates y los archivos
+              estáticos
+            </h3>
+            <div class="what">
+              Le decimos a Django en qué carpetas tiene que buscar los archivos
+              HTML y los archivos estáticos. Primero importamos
+              <code>os</code> al inicio del archivo, luego modificamos dos
+              secciones:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-dim"># Al inicio del archivo:</span>
 <span class="c-key">import</span> os
 
-<span class="c-dim"># En TEMPLATES, modifica el valor de DIRS:</span>
+<span class="c-dim"># En TEMPLATES, le indicamos dónde buscar los HTML:</span>
 <span class="c-key">TEMPLATES</span> = [{
     ...
     <span class="c-hl">'DIRS': [os.path.join(BASE_DIR, 'templates')],</span>
     ...
 }]
 
-<span class="c-dim"># Al final del archivo, después de STATIC_URL:</span>
+<span class="c-dim"># Al final del archivo, le decimos de dónde sacar los estáticos:</span>
 <span class="c-key">STATIC_URL</span> = <span class="c-str">'/static/'</span>
 <span class="c-hl">STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]</span></pre>
-          <div class="note warn">
-            ⚠️ Sin esto, Django no encontrará tus HTMLs ni archivos CSS/imágenes aunque las carpetas existan.
+            <div class="note warn">
+              ⚠️ Sin esto, Django no va a encontrar ni los HTML ni el CSS ni las
+              imágenes, aunque las carpetas existan.
+            </div>
+            <div class="note info">
+              Este código es siempre igual — no cambia según el nombre de tu
+              proyecto. <code>BASE_DIR</code> es una variable que Django ya
+              tiene definida y apunta a la raíz del proyecto.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- SECCIÓN 4 -->
-    <section>
-      <div class="section-label">04 — Configurar la app <span class="label-path">📁 nombre_app/</span></div>
-
-      <div class="step" data-type="app">
-        <div class="step-left">
-          <div class="num app">11</div>
-          <div class="connector"></div>
+      <!-- ==============================
+         SECCIÓN 4 — CONFIG APP
+    =============================== -->
+      <section>
+        <div class="section-label">
+          04 — Configurar la app
+          <span class="label-path">📁 carpeta de la app</span>
         </div>
-        <div class="step-body">
-          <h3>Crear la vista en <code>nombre_app/views.py</code></h3>
-          <div class="note info">
-            Abre <code>views.py</code> dentro de la carpeta de tu app y agrega una función. El nombre de la función lo decides tú:
+
+        <div class="step" data-type="app">
+          <div class="step-left">
+            <div class="num app">11</div>
+            <div class="connector"></div>
           </div>
-          <pre class="code-block"><span class="c-key">from</span> django.shortcuts <span class="c-key">import</span> render
+          <div class="step-body">
+            <div class="where">📂 <strong>nombre_app / views.py</strong></div>
+            <h3>Crear la función que va a mostrar la página</h3>
+            <div class="what">
+              En Django, una vista es una función que recibe la petición del
+              navegador y le responde con un archivo HTML. La escribimos en
+              <code>views.py</code>, que está dentro de la carpeta de la app:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-key">from</span> django.shortcuts <span class="c-key">import</span> render
 
 <span class="c-key">def</span> <span class="c-hl"><em class="ph2">nombre_vista</em></span>(request):
     <span class="c-key">return</span> render(request, <span class="c-str">"<em class="ph2">nombre_archivo</em>.html"</span>)</pre>
-          <div class="note warn">
-            ⚠️ El nombre del HTML que escribas aquí debe coincidir exactamente con el archivo que pongas en la carpeta <code>templates/</code>.
+            <div class="note warn">
+              ⚠️ El nombre del HTML que escribas aquí tiene que coincidir
+              exactamente con el archivo que pongas en la carpeta
+              <code>templates/</code>.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="app">
-        <div class="step-left">
-          <div class="num app">12</div>
-        </div>
-        <div class="step-body">
-          <h3>Crear <code>nombre_app/urls.py</code> y definir rutas</h3>
-          <div class="note warn">
-            ⚠️ Este archivo <strong>no existe por defecto</strong> — debes crearlo manualmente dentro de la carpeta de tu app.
+        <div class="step" data-type="app">
+          <div class="step-left">
+            <div class="num app">12</div>
           </div>
-          <pre class="code-block"><span class="c-key">from</span> django.urls <span class="c-key">import</span> path
-<span class="c-key">from</span> . <span class="c-key">import</span> views
+          <div class="step-body">
+            <div class="where">
+              📂 <strong>nombre_app / urls.py</strong> — hay que crearlo
+              manualmente
+            </div>
+            <h3>Crear el archivo de rutas de la app</h3>
+            <div class="what">
+              Le indicamos a Django qué función debe ejecutar cuando alguien
+              entre a una dirección. Este archivo
+              <strong>no existe por defecto</strong> — hay que crearlo dentro de
+              la carpeta de la app. Una vez creado, escribimos:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-key">from</span> django.urls <span class="c-key">import</span> path
+<span class="c-key">from</span> . <span class="c-key">import</span> views  <span class="c-dim"># el punto indica que views está en esta misma carpeta</span>
 
 urlpatterns = [
     path(<span class="c-str">''</span>, views.<em class="ph2">nombre_vista</em>, name=<span class="c-str">'inicio'</span>),
 ]</pre>
-          <div class="note info">
-            <code>from . import views</code> significa "importa views del mismo directorio (la app)". Reemplaza <code>nombre_vista</code> con el nombre de la función que definiste en <code>views.py</code>.
+            <div class="note info">
+              <code>path('', ...)</code> con comillas vacías corresponde a la
+              página principal, es decir <code>/</code>. El nombre de la vista
+              tiene que ser el mismo que definiste en <code>views.py</code>.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- SECCIÓN 5 -->
-    <section>
-      <div class="section-label">05 — El archivo HTML con archivos estáticos <span class="label-path">📁 templates/</span></div>
-
-      <div class="step" data-type="file">
-        <div class="step-left">
-          <div class="num file">16</div>
-          <div class="connector"></div>
+      <!-- ==============================
+         SECCIÓN 5 — HTML + ESTÁTICOS
+    =============================== -->
+      <section>
+        <div class="section-label">
+          05 — El archivo HTML <span class="label-path">📁 templates/</span>
         </div>
-        <div class="step-body">
-          <h3>Estructura de <code>templates/nombre_archivo.html</code></h3>
-          <div class="note info">
-            La primera línea <strong>siempre</strong> debe ser <code>{% load static %}</code>, antes del <code>&lt;!DOCTYPE&gt;</code>. Luego usas <code>{% static 'ruta' %}</code> para cargar tus archivos. La ruta parte desde adentro de la carpeta <code>static/</code>:
+
+        <div class="step" data-type="file">
+          <div class="step-left">
+            <div class="num file">16</div>
+            <div class="connector"></div>
           </div>
-          <pre class="code-block"><span class="c-hl">{% load static %}</span>  <span class="c-dim">← SIEMPRE en la primera línea</span>
+          <div class="step-body">
+            <div class="where">
+              📂 <strong>templates / nombre_archivo.html</strong>
+            </div>
+            <h3>Escribir el HTML y cargar los archivos estáticos</h3>
+            <div class="what">
+              Para que Django pueda servir el CSS y las imágenes desde la
+              carpeta <code>static/</code>, usamos la etiqueta
+              <code>{% static %}</code>. La primera línea del archivo siempre
+              tiene que ser <code>{% load static %}</code> — eso le dice a
+              Django que vamos a usar esas etiquetas:
+            </div>
+            <pre
+              class="code-block"
+            ><span class="c-hl">{% load static %}</span>  <span class="c-dim">← activa las etiquetas de Django. Va antes del DOCTYPE</span>
 
 &lt;!DOCTYPE html&gt;
 &lt;html lang="es"&gt;
@@ -333,109 +500,182 @@ urlpatterns = [
   &lt;meta charset="UTF-8"&gt;
   &lt;title&gt;Mi página&lt;/title&gt;
 
-  <span class="c-dim">&lt;!-- Cargar CSS --&gt;</span>
+  <span class="c-dim">&lt;!-- Le decimos de dónde sacar el CSS --&gt;</span>
   &lt;link rel="stylesheet" href="<span class="c-hl">{% static 'css/<em class="ph2">archivo</em>.css' %}</span>"&gt;
 
 &lt;/head&gt;
 &lt;body&gt;
 
-  <span class="c-dim">&lt;!-- Cargar una imagen --&gt;</span>
+  <span class="c-dim">&lt;!-- Le decimos de dónde sacar la imagen --&gt;</span>
   &lt;img src="<span class="c-hl">{% static 'img/<em class="ph2">imagen</em>.jpg' %}</span>" alt="descripción"&gt;
 
-  <span class="c-dim">&lt;!-- Cargar JS (si tienes) --&gt;</span>
+  <span class="c-dim">&lt;!-- Le decimos de dónde sacar el JS --&gt;</span>
   &lt;script src="<span class="c-hl">{% static 'js/<em class="ph2">archivo</em>.js' %}</span>"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</pre>
-          <div class="note warn">
-            ⚠️ Los nombres de archivos deben coincidir exactamente con los que tienes en <code>static/</code>. Las mayúsculas importan: <code>Imagen.jpg</code> ≠ <code>imagen.jpg</code>.
+            <div class="note warn">
+              ⚠️ La ruta dentro de <code>{% static '...' %}</code> empieza desde
+              adentro de la carpeta <code>static/</code>. Si tu imagen está en
+              <code>static/img/foto.jpg</code>, escribes
+              <code>{% static 'img/foto.jpg' %}</code>.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="step" data-type="file">
-        <div class="step-left">
-          <div class="num file">!</div>
-        </div>
-        <div class="step-body">
-          <h3>¿Por qué usar <code>{% static %}</code> y no rutas directas?</h3>
-          <pre class="code-block"><span class="c-dim">❌ MAL — ruta escrita a mano, puede romperse:</span>
+        <div class="step" data-type="file">
+          <div class="step-left">
+            <div class="num file">!</div>
+          </div>
+          <div class="step-body">
+            <div class="where">
+              💡 ¿Por qué usar <code>{% static %}</code> en lugar de escribir la
+              ruta directo?
+            </div>
+            <h3>La diferencia entre hacerlo bien y hacerlo mal</h3>
+            <pre
+              class="code-block"
+            ><span class="c-dim">❌ Así NO — Django no puede gestionar esta ruta:</span>
 &lt;link href=<span class="c-warn">"/static/css/estilos.css"</span>&gt;
 
-<span class="c-dim">✅ BIEN — Django construye la ruta automáticamente:</span>
+<span class="c-dim">✅ Así SÍ — Django genera la ruta correcta automáticamente:</span>
 &lt;link href="<span class="c-hl">{% static 'css/estilos.css' %}</span>"&gt;</pre>
-          <div class="note info">
-            Con <code>{% static %}</code>, si cambias <code>STATIC_URL</code> en <code>settings.py</code>, todas las rutas se actualizan solas.
+            <div class="what">
+              Con <code>{% static %}</code>, Django construye la ruta hacia el
+              archivo. Si en algún momento cambia la configuración de los
+              estáticos, el HTML no hay que tocarlo.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- SECCIÓN 6 -->
-    <section>
-      <div class="section-label">06 — Verificar que todo funciona</div>
+      <!-- ==============================
+         SECCIÓN 6 — SERVIDOR
+    =============================== -->
+      <section>
+        <div class="section-label">06 — Levantar el servidor y verificar</div>
 
-      <div class="step" data-type="term">
-        <div class="step-left">
-          <div class="num term">✓</div>
-        </div>
-        <div class="step-body">
-          <h3>Levantar el servidor de desarrollo</h3>
-          <code class="cmd">python manage.py runserver</code>
-          <div class="note ok">
-            ✅ Abre tu navegador en <strong>http://127.0.0.1:8000/</strong> — si ves tu página HTML, todo está configurado correctamente. Para detener el servidor presiona <code>Ctrl + C</code>.
+        <div class="step" data-type="term">
+          <div class="step-left">
+            <div class="num term">✓</div>
           </div>
-          <div class="checklist">
-            <div class="check-title">Si algo no carga, verifica:</div>
-            <label class="check-item"><input type="checkbox"> ¿Pusiste <code>{% load static %}</code> en la primera línea del HTML?</label>
-            <label class="check-item"><input type="checkbox"> ¿Los nombres de archivos coinciden exactamente? (mayúsculas importan)</label>
-            <label class="check-item"><input type="checkbox"> ¿La carpeta es <code>static/css/</code> y no <code>static/CSS/</code>?</label>
-            <label class="check-item"><input type="checkbox"> ¿Agregaste <code>STATICFILES_DIRS</code> en settings.py?</label>
-            <label class="check-item"><input type="checkbox"> ¿Registraste la app en <code>INSTALLED_APPS</code>?</label>
-            <label class="check-item"><input type="checkbox"> ¿Creaste el archivo <code>nombre_app/urls.py</code> manualmente?</label>
-            <label class="check-item"><input type="checkbox"> ¿El entorno virtual está activado?</label>
+          <div class="step-body">
+            <div class="where">
+              📍 Terminal — dentro de la carpeta del proyecto, con el entorno
+              activo
+            </div>
+            <h3>Levantar el servidor de desarrollo</h3>
+            <code class="cmd">python manage.py runserver</code>
+            <div class="what">
+              Iniciamos el servidor local. Abrimos el navegador y entramos a
+              <strong>http://127.0.0.1:8000/</strong> — si todo está configurado
+              correctamente, vemos nuestra página. Para detener el servidor
+              presionamos <code>Ctrl + C</code>.
+            </div>
+            <div class="note ok">
+              ✅ Si ves tu página, todo está funcionando correctamente.
+            </div>
+            <div class="checklist">
+              <div class="check-title">
+                Si algo no carga, verifica punto por punto:
+              </div>
+              <label class="check-item"
+                ><input type="checkbox" /> ¿El entorno virtual está activo?
+                (debe verse el nombre al inicio de la terminal)</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Registraste la app en
+                <code>INSTALLED_APPS</code> dentro de
+                <code>settings.py</code>?</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Creaste
+                <code>urls.py</code> manualmente dentro de la carpeta de la
+                app?</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Agregaste
+                <code>STATICFILES_DIRS</code> en
+                <code>settings.py</code>?</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Pusiste
+                <code>{% load static %}</code> en la primera línea del
+                HTML?</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Los nombres de los archivos
+                coinciden exactamente? (mayúsculas importan)</label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /> ¿Las carpetas
+                <code>templates/</code> y <code>static/</code> están en la raíz,
+                no dentro de la app?</label
+              >
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ETIQUETAS DE PLANTILLA -->
-    <section>
-      <div class="section-label">07 — Referencia rápida: etiquetas de plantilla Django</div>
-      <div class="tags-grid">
-        <div class="tag-card">
-          <div class="tag-code">{% load static %}</div>
-          <div class="tag-desc">Carga el módulo de archivos estáticos. Va una sola vez, en la primera línea.</div>
+      <!-- ==============================
+         SECCIÓN 7 — REFERENCIA
+    =============================== -->
+      <section>
+        <div class="section-label">
+          07 — Referencia rápida: etiquetas de plantilla Django
         </div>
-        <div class="tag-card">
-          <div class="tag-code">{% static 'ruta' %}</div>
-          <div class="tag-desc">Genera la URL de un archivo estático (CSS, imagen, JS).</div>
+        <div class="tags-grid">
+          <div class="tag-card">
+            <div class="tag-code">{% load static %}</div>
+            <div class="tag-desc">
+              Activa las etiquetas de Django en el HTML. Va una sola vez, en la
+              primera línea, antes del DOCTYPE.
+            </div>
+          </div>
+          <div class="tag-card">
+            <div class="tag-code">{% static 'ruta' %}</div>
+            <div class="tag-desc">
+              Le dice a Django de dónde sacar un archivo estático. La ruta parte
+              desde dentro de la carpeta <code>static/</code>.
+            </div>
+          </div>
+          <div class="tag-card">
+            <div class="tag-code">{{ variable }}</div>
+            <div class="tag-desc">
+              Muestra en el HTML el valor de una variable que envió
+              <code>views.py</code> desde Python.
+            </div>
+          </div>
+          <div class="tag-card">
+            <div class="tag-code">{% if %} {% endif %}</div>
+            <div class="tag-desc">
+              Muestra o esconde partes del HTML según una condición.
+            </div>
+          </div>
+          <div class="tag-card">
+            <div class="tag-code">{% for %} {% endfor %}</div>
+            <div class="tag-desc">
+              Repite un bloque de HTML por cada elemento de una lista.
+            </div>
+          </div>
+          <div class="tag-card">
+            <div class="tag-code">{% block %} {% endblock %}</div>
+            <div class="tag-desc">
+              Permite reutilizar una plantilla base y reemplazar solo secciones
+              específicas.
+            </div>
+          </div>
         </div>
-        <div class="tag-card">
-          <div class="tag-code">{{ variable }}</div>
-          <div class="tag-desc">Muestra el valor de una variable enviada desde views.py.</div>
-        </div>
-        <div class="tag-card">
-          <div class="tag-code">{% if %} {% endif %}</div>
-          <div class="tag-desc">Condicional dentro del HTML.</div>
-        </div>
-        <div class="tag-card">
-          <div class="tag-code">{% for %} {% endfor %}</div>
-          <div class="tag-desc">Ciclo para repetir elementos HTML.</div>
-        </div>
-        <div class="tag-card">
-          <div class="tag-code">{% block %} {% endblock %}</div>
-          <div class="tag-desc">Para herencia de plantillas (temas más avanzados).</div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-  </main>
+    <footer>
+      <p>
+        Guía Django — Evidencia 3 &nbsp;·&nbsp; Licenciatura en Tecnologías de
+        la Información
+      </p>
+    </footer>
 
-  <footer>
-    <p>Guía Django — Evidencia 3 &nbsp;·&nbsp; Licenciatura en Tecnologías de la Información</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
